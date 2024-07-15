@@ -209,6 +209,19 @@ abstract class CameraPlatform extends PlatformInterface {
     throw UnimplementedError('setExposurePoint() is not implemented.');
   }
 
+  Future<double> getCameraFStop(int cameraId) {
+    throw UnimplementedError('getCameraFStop() is not implemented.');
+  }
+  Future<double> getCameraISO(int cameraId) {
+    throw UnimplementedError('getCameraISO() is not implemented.');
+  }
+  Future<double> getCameraShutter(int cameraId) {
+    throw UnimplementedError('getCameraShutter() is not implemented.');
+  }
+  Future<double> getCameraTemperature(int cameraId) {
+    throw UnimplementedError('getCameraTemperature() is not implemented.');
+  }
+
   /// Gets the minimum supported exposure offset for the selected camera in EV units.
   Future<double> getMinExposureOffset(int cameraId) {
     throw UnimplementedError('getMinExposureOffset() is not implemented.');

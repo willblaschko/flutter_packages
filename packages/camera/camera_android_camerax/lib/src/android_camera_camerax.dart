@@ -570,6 +570,33 @@ class AndroidCameraCameraX extends CameraPlatform {
   ///
   /// [cameraId] not used.
   @override
+  Future<double> getCameraFStop(int cameraId) async {
+    final double fStop = await cameraInfo!.getCameraFStop();
+    return fStop;
+  }
+
+  @override
+  Future<double> getCameraISO(int cameraId) async {
+    final double value = await cameraInfo!.getCameraISO();
+    return value;
+  }
+
+  @override
+  Future<double> getCameraShutter(int cameraId) async {
+    final double value = await cameraInfo!.getCameraShutter();
+    return value;
+  }
+
+  @override
+  Future<double> getCameraTemperature(int cameraId) async {
+    final double value = await cameraInfo!.getCameraTemperature();
+    return value;
+  }
+
+  /// Gets the minimum supported exposure offset for the selected camera in EV units.
+  ///
+  /// [cameraId] not used.
+  @override
   Future<double> getMinExposureOffset(int cameraId) async {
     final ExposureState exposureState = await cameraInfo!.getExposureState();
     return exposureState.exposureCompensationRange.minCompensation *

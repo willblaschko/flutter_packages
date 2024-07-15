@@ -243,6 +243,11 @@ NSObject<FlutterMessageCodec> *FCPCameraApiGetCodec(void);
 /// A null value resets to the default exposure point.
 - (void)setExposurePoint:(nullable FCPPlatformPoint *)point
               completion:(void (^)(FlutterError *_Nullable))completion;
+- (void)getCameraFStop:(void (^)(NSNumber *_Nullable, FlutterError *_Nullable))completion;
+- (void)getCameraShutter:(void (^)(NSNumber *_Nullable, FlutterError *_Nullable))completion;
+- (void)getCameraISO:(void (^)(NSNumber *_Nullable, FlutterError *_Nullable))completion;
+- (void)getCameraTemperature:(void (^)(NSNumber *_Nullable, FlutterError *_Nullable))completion;
+
 /// Returns the minimum exposure offset supported by the camera.
 - (void)getMinimumExposureOffset:(void (^)(NSNumber *_Nullable, FlutterError *_Nullable))completion;
 /// Returns the maximum exposure offset supported by the camera.

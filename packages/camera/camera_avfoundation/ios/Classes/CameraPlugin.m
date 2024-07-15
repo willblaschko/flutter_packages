@@ -316,6 +316,65 @@ static FlutterError *FlutterErrorFromNSError(NSError *error) {
   });
 }
 
+//- (void)getCameraSettings:(nonnull void (^)(NSString * _Nullable, FlutterError *_Nullable))completion {
+//    __weak typeof(self) weakSelf = self;
+//    dispatch_async(self.captureSessionQueue, ^{
+//        __strong typeof(self) strongSelf = weakSelf;
+//        if (!strongSelf) {
+//            completion(nil, [FlutterError errorWithCode:@"UNAVAILABLE" message:@"Camera settings unavailable" details:nil]);
+//            return;
+//        }
+//
+//        NSString *fStop = [NSString stringWithFormat:@"%.20lf", strongSelf.camera.captureDevice.lensAperture];
+//        NSString *ISO = [NSString stringWithFormat:@"%.20lf", strongSelf.camera.captureDevice.ISO];
+//        NSString *shutterSpeed = [NSString stringWithFormat:@"%.20lf", ((double)strongSelf.camera.captureDevice.exposureDuration.value/(double)strongSelf.camera.captureDevice.exposureDuration.timescale)];
+//
+//        NSString *combined = [NSString stringWithFormat:@"%@/%@/%@", fStop, ISO, shutterSpeed];
+//
+//        completion(combined, nil);
+//    });
+//}
+
+
+- (void)getCameraFStop:(nonnull void (^)(NSNumber *_Nullable,
+FlutterError *_Nullable))completion {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(self.captureSessionQueue, ^{
+        completion(@(weakSelf.camera.captureDevice.lensAperture), nil);
+    });
+}
+
+- (void)getCameraISO:(nonnull void (^)(NSNumber *_Nullable,
+FlutterError *_Nullable))completion {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(self.captureSessionQueue, ^{
+        completion(@(weakSelf.camera.captureDevice.ISO), nil);
+    });
+}
+
+- (void)getCameraShutter:(nonnull void (^)(NSNumber *_Nullable,
+FlutterError *_Nullable))completion {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(self.captureSessionQueue, ^{
+        completion(@(((double)weakSelf.camera.captureDevice.exposureDuration.value/(double)weakSelf.camera.captureDevice.exposureDuration.timescale)), nil);
+    });
+}
+
+- (void)getCameraTemperature:(nonnull void (^)(NSNumber *_Nullable,
+FlutterError *_Nullable))completion {
+    __weak typeof(self) weakSelf = self;
+    NSNumber *value = @0;
+    @try {
+        AVCaptureWhiteBalanceTemperatureAndTintValues tempAndTint = [_camera.captureDevice temperatureAndTintValuesForDeviceWhiteBalanceGains:[_camera.captureDevice deviceWhiteBalanceGains]];
+        value = @(tempAndTint.temperature);
+    } @catch(NSException *e) {
+        NSLog(@"Stack trace : %@", [NSThread callStackSymbols]);
+    }
+    dispatch_async(self.captureSessionQueue, ^{
+        completion(value, nil);
+    });
+}
+
 - (void)getMinimumExposureOffset:(nonnull void (^)(NSNumber *_Nullable,
                                                    FlutterError *_Nullable))completion {
   __weak typeof(self) weakSelf = self;

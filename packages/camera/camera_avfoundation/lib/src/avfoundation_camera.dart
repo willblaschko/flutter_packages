@@ -312,6 +312,26 @@ class AVFoundationCamera extends CameraPlatform {
   }
 
   @override
+  Future<double> getCameraFStop(int cameraId) async {
+    return _hostApi.getCameraFStop();
+  }
+
+  @override
+  Future<double> getCameraISO(int cameraId) async {
+    return _hostApi.getCameraISO();
+  }
+
+  @override
+  Future<double> getCameraShutter(int cameraId) async {
+    return _hostApi.getCameraShutter();
+  }
+
+  @override
+  Future<double> getCameraTemperature(int cameraId) async {
+    return _hostApi.getCameraTemperature();
+  }
+
+  @override
   Future<double> getMinExposureOffset(int cameraId) async {
     return _hostApi.getMinExposureOffset();
   }

@@ -820,7 +820,93 @@ void SetUpFCPCameraApiWithSuffix(id<FlutterBinaryMessenger> binaryMessenger,
       [channel setMessageHandler:nil];
     }
   }
+  {
+    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+           initWithName:[NSString stringWithFormat:@"%@%@",
+                                                   @"dev.flutter.pigeon.camera_avfoundation."
+                                                   @"CameraApi.getCameraFStop",
+                                                   messageChannelSuffix]
+        binaryMessenger:binaryMessenger
+                  codec:FCPCameraApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(getMinimumExposureOffset:)],
+                @"FCPCameraApi api (%@) doesn't respond to @selector(getCameraFStop:)",
+                api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        [api getCameraFStop:^(NSNumber *_Nullable output, FlutterError *_Nullable error) {
+          callback(wrapResult(output, error));
+        }];
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+    {
+        FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+                initWithName:[NSString stringWithFormat:@"%@%@",
+                                                        @"dev.flutter.pigeon.camera_avfoundation."
+                                                        @"CameraApi.getCameraISO",
+                                                        messageChannelSuffix]
+             binaryMessenger:binaryMessenger
+                       codec:FCPCameraApiGetCodec()];
+        if (api) {
+            NSCAssert([api respondsToSelector:@selector(getMinimumExposureOffset:)],
+                      @"FCPCameraApi api (%@) doesn't respond to @selector(getCameraISO:)",
+                      api);
+            [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+                [api getCameraISO:^(NSNumber *_Nullable output, FlutterError *_Nullable error) {
+                    callback(wrapResult(output, error));
+                }];
+            }];
+        } else {
+            [channel setMessageHandler:nil];
+        }
+    }
+    {
+        FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+                initWithName:[NSString stringWithFormat:@"%@%@",
+                                                        @"dev.flutter.pigeon.camera_avfoundation."
+                                                        @"CameraApi.getCameraShutter",
+                                                        messageChannelSuffix]
+             binaryMessenger:binaryMessenger
+                       codec:FCPCameraApiGetCodec()];
+        if (api) {
+            NSCAssert([api respondsToSelector:@selector(getMinimumExposureOffset:)],
+                      @"FCPCameraApi api (%@) doesn't respond to @selector(getCameraShutter:)",
+                      api);
+            [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+                [api getCameraShutter:^(NSNumber *_Nullable output, FlutterError *_Nullable error) {
+                    callback(wrapResult(output, error));
+                }];
+            }];
+        } else {
+            [channel setMessageHandler:nil];
+        }
+    }
+    {
+        FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+                initWithName:[NSString stringWithFormat:@"%@%@",
+                                                        @"dev.flutter.pigeon.camera_avfoundation."
+                                                        @"CameraApi.getCameraTemperature",
+                                                        messageChannelSuffix]
+             binaryMessenger:binaryMessenger
+                       codec:FCPCameraApiGetCodec()];
+        if (api) {
+            NSCAssert([api respondsToSelector:@selector(getMinimumExposureOffset:)],
+                      @"FCPCameraApi api (%@) doesn't respond to @selector(getCameraTemperature:)",
+                      api);
+            [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+                [api getCameraTemperature:^(NSNumber *_Nullable output, FlutterError *_Nullable error) {
+                    callback(wrapResult(output, error));
+                }];
+            }];
+        } else {
+            [channel setMessageHandler:nil];
+        }
+    }
+
   /// Returns the minimum exposure offset supported by the camera.
+
   {
     FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
            initWithName:[NSString stringWithFormat:@"%@%@",

@@ -735,6 +735,42 @@ class CameraController extends ValueNotifier<CameraValue> {
     }
   }
 
+  Future<double> getCameraFStop() async {
+    _throwIfNotInitialized('getCameraFStop');
+    try {
+      return CameraPlatform.instance.getCameraFStop(_cameraId);
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
+  }
+
+  Future<double> getCameraISO() async {
+    _throwIfNotInitialized('getCameraISO');
+    try {
+      return CameraPlatform.instance.getCameraISO(_cameraId);
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
+  }
+
+  Future<double> getCameraShutter() async {
+    _throwIfNotInitialized('getCameraShutter');
+    try {
+      return CameraPlatform.instance.getCameraShutter(_cameraId);
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
+  }
+
+  Future<double> getCameraTemperature() async {
+    _throwIfNotInitialized('getCameraTemperature');
+    try {
+      return CameraPlatform.instance.getCameraTemperature(_cameraId);
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
+  }
+
   /// Gets the minimum supported exposure offset for the selected camera in EV units.
   Future<double> getMinExposureOffset() async {
     _throwIfNotInitialized('getMinExposureOffset');

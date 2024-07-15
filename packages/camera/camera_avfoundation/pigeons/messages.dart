@@ -242,6 +242,22 @@ abstract class CameraApi {
   @ObjCSelector('setExposurePoint:')
   void setExposurePoint(PlatformPoint? point);
 
+  @async
+  @ObjCSelector('getCameraFStop')
+  double getCameraFStop();
+
+  @async
+  @ObjCSelector('getCameraShutter')
+  double getCameraShutter();
+
+  @async
+  @ObjCSelector('getCameraISO')
+  double getCameraISO();
+
+  @async
+  @ObjCSelector('getCameraTemperature')
+  double getCameraTemperature();
+
   /// Returns the minimum exposure offset supported by the camera.
   @async
   @ObjCSelector('getMinimumExposureOffset')

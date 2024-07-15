@@ -399,6 +399,43 @@ class MethodChannelCamera extends CameraPlatform {
   }
 
   @override
+  Future<double> getCameraFStop(int cameraId) async {
+    final double? value = await _channel.invokeMethod<double>(
+      'getCameraFStop',
+      <String, dynamic>{'cameraId': cameraId},
+    );
+
+    return value!;
+  }
+  @override
+  Future<double> getCameraISO(int cameraId) async {
+    final double? value = await _channel.invokeMethod<double>(
+      'getCameraISO',
+      <String, dynamic>{'cameraId': cameraId},
+    );
+
+    return value!;
+  }
+  @override
+  Future<double> getCameraShutter(int cameraId) async {
+    final double? cameraFStop = await _channel.invokeMethod<double>(
+      'getCameraShutter',
+      <String, dynamic>{'cameraId': cameraId},
+    );
+
+    return cameraFStop!;
+  }
+  @override
+  Future<double> getCameraTemperature(int cameraId) async {
+    final double? value = await _channel.invokeMethod<double>(
+      'getCameraTemperature',
+      <String, dynamic>{'cameraId': cameraId},
+    );
+
+    return value!;
+  }
+
+  @override
   Future<double> getMinExposureOffset(int cameraId) async {
     final double? minExposureOffset = await _channel.invokeMethod<double>(
       'getMinExposureOffset',
